@@ -1,0 +1,19 @@
+{
+  "name": "cacheio",
+  "version": "1.0.0",
+  "description": "supercharger for cachemanager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raadad Elsleiman",
+  "license": "MIT",
+  "dependencies": {
+    "cache-manager": "^1.0.0",
+    "collapsio": "file:../collapsio"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {}
+}
