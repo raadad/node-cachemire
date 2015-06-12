@@ -1,5 +1,5 @@
 /**
- * [constructor cacheio entrypoint]
+ * [constructor cachemirecachemirecachemire entrypoint]
  * @param  {[library]}          cacheManager [description]
  * @param  {[library]}          collapsio    [description]
  * @param  {[cacheInstance]}    cache        [description]

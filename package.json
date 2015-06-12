@@ -1,5 +1,5 @@
 {
-  "name": "cacheio",
+  "name": "cachemire",
   "version": "1.0.0",
   "description": "supercharger for cachemanager",
   "main": "index.js",

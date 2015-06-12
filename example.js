@@ -11,9 +11,9 @@ var Cachio = require('./index.js'),
         ttl: 100
     }),
     backendCache = cacheManager.multiCaching([memoryCache, memoryCache2]),
-    cacheio = Cachio(backendCache),
+    cachemire = Cachio(backendCache),
     request = require('request');
 
-cacheio.get({}, 'google', request.get.bind('http://google.com'), function(req, res) {
+cachemire.get({}, 'google', request.get.bind('http://google.com'), function(req, res) {
     console.log("@@@@@@@@@@@@@@");
 });
