@@ -10,10 +10,14 @@
   "license": "MIT",
   "dependencies": {
     "cache-manager": "^1.0.0",
-    "collapsio": "file:../collapsio"
+    "collapsio": "^1.0.0"
   },
   "directories": {
     "test": "test"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raadad/node-cachemire.git"
+  }
 }
