@@ -1,7 +1,7 @@
 /**
  * [constructor cachemirecachemirecachemire entrypoint]
  * @param  {[library]}          cacheManager [description]
- * @param  {[library]}          collapsio    [description]
+ * @param  {[library]}          collapse    [description]
  * @param  {[cacheInstance]}    cache        [description]
  * @return {[cachioInstance]}                [description]
  */
@@ -13,7 +13,7 @@
 // STAGGERED TTL - DONE
 //
 
-var constructor = function(cacheManager, collapsio, cache) {
+var constructor = function(collapse, cache) {
     var self = {};
 
     self.get = function(options, key, action, callback) {
@@ -30,16 +30,21 @@ var constructor = function(cacheManager, collapsio, cache) {
     };
 
     self.goUpstream = function(options, key, action, callback) {
-        collapsio.apply(options.cacheOptions, key, action, function() {
-            self.set(key, options.setOptions);
+        if (!options) options = {};
+        if (!options.cacheOptions) options.cacheOptions = {};
+        if (!options.setOptions) options.setOptions = {};
+
+        collapse(options.cacheOptions, key, action, function(err, data) {
+            if (!err) self.set(key, data, options.setOptions);
             callback.apply(this, arguments);
         });
     };
 
     self.set = function(key, value, options, cb) {
+        if (!options) options = {};
         if (!options.staggeredTtlRange) options.staggeredTtlRange = 0;
-        if (!options.ttl) options.ttl =  100;
-        options.ttl + (Math.floor(Math.random() * options.staggeredTtlRange));
+        if (!options.ttl) options.ttl = 100;
+        options.ttl = options.ttl + (Math.floor(Math.random() * options.staggeredTtlRange));
         cache.set.apply(this, arguments);
     };
 
@@ -52,6 +57,4 @@ var constructor = function(cacheManager, collapsio, cache) {
     return self;
 };
 
-module.exports = constructor.bind(null, require('cache-manager'), require('collapsio'));
-
-
+module.exports = constructor.bind(null, require('collapsio'));
