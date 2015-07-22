@@ -44,8 +44,9 @@ var constructor = function(collapse, cache) {
         if (!options) options = {};
         if (!options.staggeredTtlRange) options.staggeredTtlRange = 0;
         if (!options.ttl) options.ttl = 100;
+        options = exports._extend({}, options);
         options.ttl = options.ttl + (Math.floor(Math.random() * options.staggeredTtlRange));
-        cache.set.apply(this, arguments);
+        cache.set(key, value, options, cb);
     };
 
     self.del = function(key, options, cb) {
@@ -58,3 +59,15 @@ var constructor = function(collapse, cache) {
 };
 
 module.exports = constructor.bind(null, require('collapsio'));
+
+exports._extend = function(origin, add) {
+
+    if (!add || typeof add !== 'object') return origin;
+
+    var keys = Object.keys(add);
+    var i = keys.length;
+    while (i--) {
+        origin[keys[i]] = add[keys[i]];
+    }
+    return origin;
+};
